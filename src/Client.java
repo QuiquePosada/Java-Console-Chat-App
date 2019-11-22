@@ -1,18 +1,13 @@
-
-
 /*
- * Author: Enrique Posada Lozano
- * ID: A01700711
- * */
-
-
+Author: Enrique Posada Lozano
+ID: A017000711
+*/
 import java.util.*;
 import java.net.*;
 import java.io.*;
 
 public class Client {
 
-    // initialize socket as well as IO stream
     private static Socket socket = null;
     private static DataInputStream input = null;
     private static DataOutputStream output = null;
@@ -31,14 +26,7 @@ public class Client {
         InetAddress ip = null;
         try {
             // change the ip address
-            // al tomar el local host solo se comunica con la computadora en donde se tiene el servidor
-//             ip = InetAddress.getByName("localhost"); // Localhost
-            // ip = InetAddress.getByName("10.25.87.112"); // IP Tec
-            // ip = InetAddress.getByName("10.25.87.60");
-//            ip = InetAddress.getByName("10.25.87.19");
-//            ip = InetAddress.getByName("10.25.87.186"); // TEC
-            ip = InetAddress.getByName("10.25.87.60");
-            // ip = InetAddress.getByName("192.168.1.130"); // IP House
+            ip = InetAddress.getByName("localhost"); // Localhost
             System.out.println("Enter your USERNAME : ");
             String name = scanner.nextLine();
             System.out.println("Your name will be : " + name);
@@ -53,10 +41,6 @@ public class Client {
                 e.printStackTrace();
             }
 
-//            serverMessages = new ServerMessages(socket, input, out);
-//            server_msg_thread = new Thread(serverMessages);
-//            server_msg_thread.start();
-
             try {
                 output.writeUTF(name);
             } catch (IOException e) {
@@ -64,7 +48,7 @@ public class Client {
                 System.out.println("Error sending username to server");
             }
 
-            String tosend = "";
+//            String tosend = "";
 
             write_messages = new Write_Messages(output);
             read_messages = new Read_Messages(input);
@@ -195,4 +179,3 @@ class Read_Messages implements Runnable {
         }
     }
 }
-

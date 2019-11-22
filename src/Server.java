@@ -1,15 +1,12 @@
-
 /*
- * Author: Enrique Posada Lozano
- * ID: A01700711
- * */
-
+Author: Enrique Posada Lozano
+ID: A017000711
+*/
 import java.util.*;
 import java.net.*;
 import java.io.*;
 
 public class Server {
-    //initialize socket and input stream
 
     //This is now passed to the main locally
     private static Socket socket = null;
@@ -51,14 +48,12 @@ public class Server {
                 input = new DataInputStream(socket.getInputStream());
                 output = new DataOutputStream(socket.getOutputStream());
 
-//            client_id = in.readUTF();
-
                 System.out.println("Assigning new thread to incoming accepted client");
                 client = new ClientThread(socket, input, output, client_id);
                 clientThread = new Thread(client);
                 client_list.add(client);
                 clientThread.start();
-                messageAll("!!Hello there, a new user has, with name -> " + client.getName());
+                messageAll("!!!!Hello there, a new user entered, with name -> " + client.getName());
             } catch (IOException e) {
                 socket.close();
                 //due to error, close connections of all connected clients
@@ -75,7 +70,6 @@ public class Server {
             client_id ++;
         }
     }
-//    public static
 
     public static synchronized void disconnect_from_Server(int user_id){
         ClientThread client_to_close = client_list.get(user_id);
@@ -99,7 +93,7 @@ public class Server {
     }
 
     public static synchronized void messageAll(String s) {
-        // BROADCAST a message informing that a new user has connected to server
+        // send everybody a message informing that a new user has connected to server
         System.out.println("\tHELLO in MESSAGE ALL!!!");
         for (int i = 0; i < client_list.size(); i++) {
             ClientThread client_to_recieve = client_list.get(i);
@@ -146,64 +140,44 @@ class ClientThread implements Runnable{
         }
         System.out.println("New Client Thread created !  USERNAME is : " + this.name);
         this.user_id = user_id;
+        try {
+            this.output.writeUTF("\tWELCOME " + this.name + " TO THE JAVA CHAT ROOM!\nWrite whatever message you want to send.\n\n\tBut in order to disconnect from the SERVER, you must enter 'exit()'");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void run() {
-        try
-        {
-            // takes input from the client socket
-            String line = "";
-//            System.out.println("HEY");
-            output.writeUTF("HELLO "+ name +" FROM SERVER\n" +
-                    "\t!!Welcome to the Chat Room!!\nType and hit ENTER in order to send all the messages that you want to the server.\nIn order to disconnect from the SERVER, you MUST type 'exit()'");
+        String line = "";
 
-
-            // reads message from client until "exit()" is sent
-            //Or you could have an exit server line received which closes the server
-            while (true){
-                try
-                {
+        // reads message from client until "exit()" is sent
+        //Or you could have an exit server line received which closes the server
+        while (true){
+            try
+            {
 //                    System.out.println("Client : " + socket + "///(USERNAME)->" + name + " sends: ");
-                    System.out.println("Client : ///(USERNAME)->" + getName() + " sends: ");
+                System.out.println("Client : ///(USERNAME)->" + getName() + " sends: ");
 //                    out.writeUTF("Testing read message thread");
-                    line = input.readUTF();
-                    System.out.println("\t" + line);
-                    System.out.println("Message END");
-                    if(line.equals("exit()")){
-                        System.out.println("Client : " + this.socket + " (USERNAME) " + getName() + " wants to EXIT");
-                        System.out.println("Closing connection for " + getName());
-                        Server.disconnect_from_Server(user_id);
-                        break; // end the loop
-                    }
-                    else if(!line.equals("exit()")){ // else message everyone connected !
-                        String newline = getName() + " : " + line;
-                        Server.messageAll(newline);
-                    }
+                line = input.readUTF();
+                System.out.println("\t" + line);
+                System.out.println("Message END");
+                if(line.equals("exit()")){
+                    System.out.println("Client : " + this.socket + " (USERNAME) " + getName() + " wants to EXIT");
+                    System.out.println("Closing connection for " + getName());
+                    Server.disconnect_from_Server(user_id);
+                    break; // end the loop
                 }
-                catch(IOException i)
-                {
-                    System.out.println(i);
+                else if(!line.equals("exit()")){ // else message everyone connected !
+                    String newline = getName() + " : " + line;
+                    Server.messageAll(newline);
                 }
             }
+            catch(IOException i)
+            {
+                System.out.println(i);
+            }
         }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-            System.out.println(e);
-        }
-
-//        try {
-//            //            Server.client_list.remove(0)
-////            out.writeUTF("Disconnected From SERVER!\n\nGoodbye : " + getName() + "\n\n\tPress Ctrl + C to exit program");
-////            out.writeUTF("Good bye " + name);
-////            out.close();
-////            in.close();
-////            socket.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//            socket.close(); // todo same as close!!!!
     }
 
     public String getName() {
@@ -214,4 +188,3 @@ class ClientThread implements Runnable{
         this.user_id = user_id;
     }
 }
-
