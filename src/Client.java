@@ -59,51 +59,11 @@ public class Client {
             write_message_thread.start();
             read_message_thread.start();
 
-            //previous version
-//            while (!tosend.equals("exit()")){
-//            while (true) {
-//                    System.out.println("TRUE?? " + tosend.equals("exit()"));
-//                    try {
-////                    System.out.println(input.readUTF());
-//                    System.out.println("Reading input:");
-//                        tosend = scanner.nextLine();
-//                        if (tosend.equals("exit()")) {
-//                            break;
-////                            stoploop(); // function to stop the client
-//                        }
-//
-//                        out.writeUTF(tosend);
-//                        System.out.println("Message: " + tosend);
-//                    } catch (IOException i) {
-//                        System.out.println(i);
-//                    }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-            // close the connection
-//        try {
-//            System.out.println("Closing Connection...");
-
-            // Apparently we never ever have to close it from here
-//            input.close();
-//            out.close();
-//            socket.close();
-//            scanner.close();
-//            System.out.println("Connection to server closed.\nYou've been LOGGED OUT\n\tGoodbye!!");
-//        } catch (IOException i) {
-//            System.out.println(i);
-//        }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-//        private static void stoploop () {
-//            System.out.println("EXIT COMMENCED");
-//        }
     }
 
     public static boolean isAlive() {
