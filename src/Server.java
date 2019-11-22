@@ -1,4 +1,9 @@
 
+/*
+ * Author: Enrique Posada Lozano
+ * ID: A01700711
+ * */
+
 import java.util.*;
 import java.net.*;
 import java.io.*;
@@ -120,7 +125,7 @@ public class Server {
 class ClientThread implements Runnable{
 
     public Socket socket = null;
-//    private static ServerSocket server = null;
+    //    private static ServerSocket server = null;
     public  DataInputStream input =  null;
     public  DataOutputStream output = null;
 
@@ -150,7 +155,9 @@ class ClientThread implements Runnable{
             // takes input from the client socket
             String line = "";
 //            System.out.println("HEY");
-            output.writeUTF("HELLO "+ name +" FROM SERVER");
+            output.writeUTF("HELLO "+ name +" FROM SERVER\n" +
+                    "\t!!Welcome to the Chat Room!!\nType and hit ENTER in order to send all the messages that you want to the server.\nIn order to disconnect from the SERVER, you MUST type 'exit()'");
+
 
             // reads message from client until "exit()" is sent
             //Or you could have an exit server line received which closes the server
@@ -208,53 +215,3 @@ class ClientThread implements Runnable{
     }
 }
 
-
-
-
-
-//    // constructor with port
-//    public Server(int port)
-//    {
-//        // starts server and waits for a connection
-//        try
-//        {
-//            server = new ServerSocket(port);
-//            System.out.println("Server started");
-//
-//            System.out.println("Waiting for a client ...");
-//
-//            socket = server.accept();
-//            System.out.println("Client accepted to Server");
-//
-//            // takes input from the client socket
-//            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-//
-//
-//
-//            // Temporal since this is just following a tutorial
-//            String line = "";
-//
-//            // reads message from client until "Over" is sent
-//            while (!line.equals("exit()"))
-//            {
-//                try
-//                {
-//                    line = in.readUTF();
-//                    System.out.println(line);
-//
-//                }
-//                catch(IOException i)
-//                {
-//                    System.out.println(i);
-//                }
-//            }
-//            System.out.println("Closing connection");
-//
-//            socket.close();
-//            in.close();
-//        }
-//        catch(IOException i)
-//        {
-//            System.out.println(i);
-//        }
-//    }

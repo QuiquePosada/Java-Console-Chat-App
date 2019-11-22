@@ -1,4 +1,11 @@
 
+
+/*
+ * Author: Enrique Posada Lozano
+ * ID: A01700711
+ * */
+
+
 import java.util.*;
 import java.net.*;
 import java.io.*;
@@ -25,12 +32,12 @@ public class Client {
         try {
             // change the ip address
             // al tomar el local host solo se comunica con la computadora en donde se tiene el servidor
-            ip = InetAddress.getByName("localhost"); // Localhost
+//             ip = InetAddress.getByName("localhost"); // Localhost
             // ip = InetAddress.getByName("10.25.87.112"); // IP Tec
             // ip = InetAddress.getByName("10.25.87.60");
 //            ip = InetAddress.getByName("10.25.87.19");
 //            ip = InetAddress.getByName("10.25.87.186"); // TEC
-
+            ip = InetAddress.getByName("10.25.87.60");
             // ip = InetAddress.getByName("192.168.1.130"); // IP House
             System.out.println("Enter your USERNAME : ");
             String name = scanner.nextLine();
@@ -127,7 +134,7 @@ public class Client {
 // thread class that takes care of writing the users messages and sending them to the server
 class Write_Messages implements Runnable{
 
-//    private static DataInputStream input = null;
+    //    private static DataInputStream input = null;
     private static DataOutputStream output = null;
 
     public Write_Messages(DataOutputStream output) {
@@ -189,57 +196,3 @@ class Read_Messages implements Runnable {
     }
 }
 
-
-// practice code
-
-//    public Client(String ip_address, int port)
-//    {
-//        // establish a connection
-//        try
-//        {
-//            socket = new Socket(ip_address, port);
-//            System.out.println("Connected");
-//
-//            // takes input from terminal
-//            input  = new DataInputStream(System.in);
-//
-//            // sends output to the socket
-//            out    = new DataOutputStream(socket.getOutputStream());
-//        }
-//        catch(UnknownHostException u)
-//        {
-//            System.out.println(u);
-//        }
-//        catch(IOException i)
-//        {
-//            System.out.println(i);
-//        }
-//
-//        String exit_line = "";
-//
-//        // keep reading until exit line in entered
-//        while (!exit_line.equals("exit()"))
-//        {
-//            try
-//            {
-//                exit_line = input.readLine();
-//                out.writeUTF(exit_line);
-//            }
-//            catch(IOException i)
-//            {
-//                System.out.println(i);
-//            }
-//        }
-//
-//        // close the connection
-//        try
-//        {
-//            input.close();
-//            out.close();
-//            socket.close();
-//        }
-//        catch(IOException i)
-//        {
-//            System.out.println(i);
-//        }
-//    }
