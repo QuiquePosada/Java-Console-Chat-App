@@ -4,7 +4,7 @@ Console chat room system made in java using sockets and multithreading for Progr
 This program is a multithreaded program that imlpements sockets.
 
 <b>How to Setup :</b>
-In order to run the program, you must have java version 13 installed. In order to successfully run both the server and client programs with the different computers, you must do the following : 
+In order to run the program, you must have Java Runtime (class file version 57.0) installed. **Meaning that it will only recognize versions up to 52.0.** In order to successfully run both the server and client programs with the different computers, you must do the following : 
 <ol>
   <li>Download both <em>"Server.java"</em> and <em>"Client.java"</em></li>
   <li>Open and edit the file <em>"Client.java"</em> and look for the ip variable, in which if you want to communicate with other computers within a local network, then you must enter the ip address of the computer that will run the <em>"Server.java"</em> file, and save it
