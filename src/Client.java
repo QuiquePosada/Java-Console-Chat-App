@@ -1,6 +1,7 @@
+
 /*
 Author: Enrique Posada Lozano
-ID: A017000711
+ID:     A017000711
 */
 import java.util.*;
 import java.net.*;
@@ -48,7 +49,6 @@ public class Client {
                 System.out.println("Error sending username to server");
             }
 
-//            String tosend = "";
 
             write_messages = new Write_Messages(output);
             read_messages = new Read_Messages(input);
@@ -59,11 +59,9 @@ public class Client {
             write_message_thread.start();
             read_message_thread.start();
 
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static boolean isAlive() {

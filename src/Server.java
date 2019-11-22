@@ -25,10 +25,8 @@ public class Server {
 
         System.out.println("Server has started");
         System.out.println("Waiting for Clients...");
-//        ServerSocket server = null;
         try {
             server = new ServerSocket(8080);
-            // Note: do some tests
             // server.setReuseAddress(true);
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,6 +45,8 @@ public class Server {
 
                 input = new DataInputStream(socket.getInputStream());
                 output = new DataOutputStream(socket.getOutputStream());
+
+//            client_id = in.readUTF();
 
                 System.out.println("Assigning new thread to incoming accepted client");
                 client = new ClientThread(socket, input, output, client_id);
@@ -93,7 +93,7 @@ public class Server {
     }
 
     public static synchronized void messageAll(String s) {
-        // send everybody a message informing that a new user has connected to server
+        // BROADCAST a message informing that a new user has connected to server
         System.out.println("\tHELLO in MESSAGE ALL!!!");
         for (int i = 0; i < client_list.size(); i++) {
             ClientThread client_to_recieve = client_list.get(i);
@@ -150,7 +150,6 @@ class ClientThread implements Runnable{
     @Override
     public void run() {
         String line = "";
-
         // reads message from client until "exit()" is sent
         //Or you could have an exit server line received which closes the server
         while (true){
