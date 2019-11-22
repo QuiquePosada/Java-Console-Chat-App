@@ -18,6 +18,5 @@ In order to run the program, you must have java version 13 installed. In order t
       <li>After running the command to run the client program, enter your username and then, if the server is connected and you provided the correct ip address for the server computer, you will receive a welcome message,and from there you will be able of sending all messages as well as read messages</li>
       <li>In order to exit the client program, your <b>MUST</b> enter the line <b><em>exit()</em></b> which will disconnect you from the server and provide the command to stop the program. <strong><em>**NOTE</em>: not ending the program adequately will crash the server program, to which that program must be stopped running "ctrl + C" in the server terminal</strong></li>
     </ul></li></li>
-  <li></li>
 </ol>
 
