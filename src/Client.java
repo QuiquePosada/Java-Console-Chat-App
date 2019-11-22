@@ -25,13 +25,13 @@ public class Client {
         try {
             // change the ip address
             // al tomar el local host solo se comunica con la computadora en donde se tiene el servidor
-//             ip = InetAddress.getByName("localhost"); // Localhost
+            ip = InetAddress.getByName("localhost"); // Localhost
             // ip = InetAddress.getByName("10.25.87.112"); // IP Tec
             // ip = InetAddress.getByName("10.25.87.60");
 //            ip = InetAddress.getByName("10.25.87.19");
 //            ip = InetAddress.getByName("10.25.87.186"); // TEC
 
-            ip = InetAddress.getByName("192.168.1.130"); // IP House
+            // ip = InetAddress.getByName("192.168.1.130"); // IP House
             System.out.println("Enter your USERNAME : ");
             String name = scanner.nextLine();
             System.out.println("Your name will be : " + name);
